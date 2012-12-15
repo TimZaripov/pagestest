@@ -1,72 +1,106 @@
-<html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="http://rcku.gisogvrt.ru/scripts/mapsurfer/testing/mapsurfer.css" />
-    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/mapsurfer/testing/mapsurfer.js"></script>
-    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/mapsurfer/testing/mapsurfer.transport.js"></script>
-    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/jquery.js"></script>    
-    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/mapsurfer/testing/date.min.js"></script>
-    <style>
-        #map {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-    </head>
-    <body>
-        <div id="map">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Геопортал Хабаровского края</title>
+
+    <link rel="shortcut icon" type="image/png" href="http://geoportal.prochar.ru/public/images/null">
+
+    <link rel="stylesheet" media="screen" href="http://geoportal.prochar.ru/public/stylesheets/main.css">
+    <link rel="stylesheet" media="screen" href="http://geoportal.prochar.ru/public/stylesheets/dialogBox.css">
+    <link rel="stylesheet" media="screen" href="http://geoportal.prochar.ru/public/stylesheets/ui-style.css">
+    <link rel="stylesheet" media="screen" href="http://geoportal.prochar.ru/public/stylesheets/chosen.css">
+    <link rel="stylesheet" media="screen" href="http://geoportal.prochar.ru/public/stylesheets/jquery-ui-1.9.2.custom.css">
+    <link rel="stylesheet" type="text/css" href="http://geoportal.prochar.ru/public/stylesheets/mapsurfer.css">
+    <link rel="stylesheet" type="text/css" href="http://geoportal.prochar.ru/public/stylesheets/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" media="print" href="http://geoportal.prochar.ru/public/stylesheets/print.css">
+    <link rel="stylesheet" type="text/css" href="http://geoportal.prochar.ru/public/stylesheets/jquery.fancybox.css">
+    <link rel="stylesheet" type="text/css" href="http://geoportal.prochar.ru/public/stylesheets/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/temphacks.css">
+
+    <script type="text/javascript" src="resources/js/libs/jquery/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/jquery/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/jquery/jquery.form.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/jquery/jquery.ba-throttle-debounce.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/jquery/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/jquery/jquery.mCustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/dust-core-0.3.0.min.js"></script>
+    <script type="text/javascript" src="resources/js/libs/mapsurfer.js"></script>
+    <script type="text/javascript" src="resources/js/libs/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="resources/js/libs/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+    <script type="text/javascript" src="resources/js/libs/fancybox/jquery.fancybox-thumbs.js"></script>
+
+
+    <script type="text/javascript" src="geoportalapp-include.js"></script>
+    <script src="app/templates/authentication.js"></script>
+    <script src="app/templates/baseLayerSelector.js"></script>
+    <script src="app/templates/dialogBox.js"></script>
+    <script src="app/templates/features.js"></script>
+    <script src="app/templates/wmsFeatures.js"></script>
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="http://geoportal.prochar.ru/public/stylesheets/mapsurfer.ie.less">
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<script type="text/javascript">
+    $().ready(function () {
+
+
+        GP.initialize();
+    });
+</script>
+<div id="wrap">
+    <div id="dark-back"></div>
+    <div id="header">
+        <div class="title">Геопортал</div>
+        <div class="action-elements">
 
         </div>
-        <script>            
-            var map,
-                transportPath="http://tatavtodor.gisogvrt.ru";;    
+        <div class="login-info">
+            <div class="exit-enter-block">
+                <div class="button" id="enter-button">Вход</div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="zoom-control"></div>
+        <div class="baseLayer-block">
+            <div class="baseLayer-block-left-corner"></div>
+            <div class="baseLayer-block-right-corner"></div>
+            <div class="baseLayer-block-container" id="baseLayer-selector-container">
+                <div class="baselayers"></div>
+                <img class="element line" alt="" src="http://geoportal.prochar.ru/public/images/baselayer-line.png">
 
-            // Создаем базовый слой для карты
-            var baseLayer = new M.Rekod();
-            // создаем объект карты и привязываем его к элементу с id map
-            map = new M.Map('map', {
-                // устанвливаем центр карты
-                center: new M.LatLng(48.415498,135.075698),
-               // устанавливаем зум
-                zoom: 8,
-                // Добавляем базовый слой
-                layers: [baseLayer],
-                // Отключаем описание снизу карты
-                attributionControl: false
-            });
+                <div class="geosearch"></div>
+            </div>
+        </div>
 
-            M.Transport.Icon.Simple = M.Icon.extend({
-                iconUrl: transportPath + '/statics/images/icons/kdm_14.png',
-                iconSize: new M.Point(69, 20),
-                iconAnchor: new M.Point(35, 10),
-                popupAnchor: new M.Point(0, -10),
-                shadowUrl: null,
-                shadowSize: null,
+        <div class="right-panel" style="display:none;">
+            <div class="right-panel-hider">
+                <div title="Скрыть списки" class="right-panel-hider-button">
+                    <div class="arrow"></div>
+                </div>
+            </div>
+        </div>
 
-                initialize: function() {}
-            });    
 
-            var transport = new M.Transport(transportPath+"/transport/", {
-                icon: M.Transport.Icon.Simple,
-                refereshTime: 5000, //время обновления слоя
-                expireTime: 24*60*60*1000 // время истечения срока давности авто
-            });
-            map.addLayer(transport);
+        <!--<div class="logo-div"><img src="http://geoportal.prochar.ru/public/images/logo_rekod.png"></div>-->
 
-            var CatIcon = M.Icon.extend({
-                    iconSize: new M.Point(50,50)
-                }),
-                CatMarker = M.Marker.extend({
-                    _onMouseClick: function(){
-                        alert('1111')
-                    }
-                }),
-                icon = new CatIcon('http://placekitten.com/200/200'),
-                marker = new CatMarker(new M.LatLng(48.415498,135.075698), {
-                    icon: icon
-                })
 
-                map.addLayer(marker, true);
-        </script>        
-    </body>
+    </div>
+    <div id="map"></div>
+    <div class="printzone-overlays">
+        <div class="pz-over-1 pz-over-w"></div>
+        <div class="pz-over-2 pz-over-h"></div>
+        <div class="pz-over-3 pz-over-w"></div>
+        <div class="pz-over-4 pz-over-h"></div>
+    </div>
+</div>
+
+
+</body>
+<style type="text/css">embed[type*="application/x-shockwave-flash"], embed[src*=".swf"], object[type*="application/x-shockwave-flash"], object[codetype*="application/x-shockwave-flash"], object[src*=".swf"], object[codebase*="swflash.cab"], object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"], object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"], object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"] {
+    display: none !important;
+}</style>
 </html>

@@ -1,0 +1,64 @@
+#wrap #layers-tabs {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  height: 480px;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 0 0 0 0;
+}
+#wrap #layers-tabs .ui-widget-header {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+}
+#wrap #layers-tabs .ui-state-default {
+  background: none repeat scroll 0 0 #B0BCC4;
+  border: 0 none;
+  height: 29px;
+  margin-right: 1px;
+}
+#wrap #layers-tabs .ui-state-default a {
+  padding: 3px 5px 5px;
+}
+#wrap #layers-tabs .ui-tabs-hover {
+  background: none repeat scroll 0 0 #B0BCC4;
+  border: 0 none;
+}
+#wrap #layers-tabs .ui-state-active {
+  background: none repeat scroll 0 0 #ffffff;
+  border: 0 none;
+}
+#wrap #layers-tabs .ui-tabs-panel {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #627079;
+  border-radius: 0 0 0 0;
+  height: 435px;
+  padding: 7px 2px 2px;
+}
+#wrap #layers-tabs .accordion {
+  height: 406px;
+}
+#wrap #layers-tabs .accordion .ui-accordion-content {
+  border: 0 none;
+  padding: 0;
+}
+#wrap #layers-tabs .accordion .ui-state-default {
+  border-radius: 0 0 0 0;
+  height: 23px;
+  margin: 0 0 1px;
+  padding: 1px 0 0;
+  text-align: center;
+  background: url("http://geoportal.prochar.ru/public/images/group-bg.png") repeat-x;
+  text-align: center;
+}
+#wrap #layers-tabs .accordion .ui-state-default .ui-accordion-header-icon {
+  display: none;
+}
+#wrap #layers-tabs .ui-widget {
+  font-family: Tahoma, Geneva, Kalimati, sans-serif;
+}
+#wrap .mapsurfer-bottom {
+  bottom: 37px;
+}
+#wrap .mapsurfer-control-scale {
+  margin-left: 14px;
+}

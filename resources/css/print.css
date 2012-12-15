@@ -1,0 +1,13 @@
+#wrap > div {
+  display: none;
+}
+.printzone-overlays div {
+  display: none;
+}
+.mapsurfer-popup {
+  display: none;
+}
+#map {
+  display: block !important;
+  margin-top: 0px;
+}

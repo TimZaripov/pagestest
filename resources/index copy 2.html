@@ -1,0 +1,58 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://rcku.gisogvrt.ru/styles/mapsurfer.css" />
+    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/mapsurfer/mapsurfer.js"></script>
+    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/jquery.js"></script>    
+    <style>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="map">
+
+        </div>
+        <script>            
+            var map;    
+
+            // Создаем базовый слой для карты
+            var baseLayer = new M.Rekod();
+            // создаем объект карты и привязываем его к элементу с id map
+            map = new M.Map('map', {
+                // устанвливаем центр карты
+                center: new M.LatLng(58.99531118795094,57.83203125),
+                // устанавливаем зум
+                zoom: 4,
+                // Добавляем базовый слой
+                layers: [baseLayer],
+                // Отключаем описание снизу карты
+                attributionControl: false
+            });  
+            // создаем слой
+            var wfsLayer = new M.WFS("http://cache1.mapkzn.ru/geoserver/wfs", // источник получения данных
+                                     "admter:departments_incident_layer_archive", // название слой на геосервере
+                                     "http://cache1.mapkzn.ru/geoserver/styles/cku_departments_news_incident_style.sld", // ссылка на sld стиль
+                                     undefined, // формат по умолчанию json
+                                     {doubleSize: true} // указываем использовать двойной размер *для идентичности отображения с геопорталом
+                                     );
+            wfsLayer.on("click", function(e) {
+                var marker = e.layer;
+                // Если попап не создан для события то...
+                if (marker._popup == undefined  || !marker._popup )  {
+                    // создаем контент для popup
+                    content = "<b>"+marker.properties.title+" "+marker.properties.date+"</b><br/>"+
+                              "<b>Департамент</b>: "+marker.properties.department_name+"<br/>"+
+                              "<b>Тип</b>: "+marker.properties.news_type_name+"<br/>"+
+                              "<b>Статус</b>: "+marker.properties.status_name+"<br/>";
+                    // Добавляем popup
+                    marker.bindPopup(content).openPopup();
+                } else
+                    marker.openPopup();
+            });
+            map.addLayer(wfsLayer); // добавляем слой
+        </script>        
+    </body>
+</html>

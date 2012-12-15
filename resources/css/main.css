@@ -1,0 +1,862 @@
+@charset "utf-8";
+body {
+  font-family: Tahoma, Geneva, Kalimati, sans-serif;
+  min-width: 1020px;
+  background: #ffffff;
+  width: 100%;
+  font-size: 13px;
+  color: #1d1d1d;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #487ead;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
+a img {
+  border: 0;
+}
+.error {
+  color: #F83804;
+}
+#map {
+  font-family: Verdana,Arial;
+  height: 100%;
+  margin-top: 37px;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.right_panel.accordion .ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 0 none;
+  border-radius: 4px 4px 0 0;
+  color: #080808;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  text-align: center;
+}
+#wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  min-width: 1024px;
+}
+#wrap #content {
+  height: 100%;
+  position: relative;
+}
+#wrap #dark-back {
+  background-color: #000000;
+  display: none;
+  height: 0;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 0;
+  z-index: 110;
+}
+#wrap #dark-back img {
+  margin-top: 300px;
+}
+#wrap #header {
+  background: url("http://geoportal.prochar.ru/public/images/header-bg.png") repeat-x;
+  width: 100%;
+  height: 37px;
+}
+#wrap #header .title {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 15px;
+  margin-top: 5px;
+  position: absolute;
+}
+#wrap #header .action-elements {
+  left: 230px;
+  position: absolute;
+  top: 2px;
+}
+#wrap #header .action-elements .element {
+  background: url("http://geoportal.prochar.ru/public/images/action-element-line.png") no-repeat scroll left center transparent;
+  cursor: pointer;
+  float: left;
+  height: 30px;
+  padding-left: 4px;
+  padding-top: 1px;
+  width: 40px;
+}
+#wrap #header .action-elements .element div {
+  display: table-cell;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  width: 38px;
+}
+#wrap #header .action-elements .element div .colored {
+  background: none repeat scroll 0 0 #6D7E87;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#wrap #header .action-elements .element div:hover {
+  background: none repeat scroll 0 0 #6D7E87;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#wrap #header .action-elements .element div.current {
+  background: none repeat scroll 0 0 #6D7E87;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#wrap #header .action-elements .element-first {
+  background: none;
+}
+#wrap #header .login-info {
+  color: #FFFFFF;
+  font-size: 11px;
+  position: absolute;
+  right: 22px;
+  top: 4px;
+}
+#wrap #header .login-info .welcome {
+  float: left;
+  margin-right: 10px;
+  padding-top: 6px;
+}
+#wrap #header .login-info .exit-enter-block {
+  float: left;
+  padding: 4px 10px;
+}
+#wrap #header .login-info .exit-enter-block:hover {
+  background: #6D7E87;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#wrap #header .login-info .exit-enter-block:hover .exit-button {
+  color: #1d1d1d;
+}
+#wrap #header .login-info .exit-enter-block .button {
+  background: url("http://geoportal.prochar.ru/public/images/exit-logo.png") no-repeat scroll left center transparent;
+  cursor: pointer;
+  float: left;
+  font-weight: bold;
+  padding-bottom: 4px;
+  padding-left: 30px;
+  padding-top: 3px;
+  text-decoration: underline;
+}
+#wrap .baseLayer-block {
+  left: 10px;
+  position: absolute;
+  top: 4px;
+  z-index: 99;
+}
+#wrap .baseLayer-block .baseLayer-block-left-corner {
+  background: url("http://geoportal.prochar.ru/public/images/baseLayer-block-left-corner.png") no-repeat scroll left top transparent;
+  float: left;
+  height: 34px;
+  width: 7px;
+}
+#wrap .baseLayer-block .baseLayer-block-right-corner {
+  background: url("http://geoportal.prochar.ru/public/images/baseLayer-block-right-corner.png") no-repeat scroll left top transparent;
+  float: right;
+  height: 34px;
+  width: 7px;
+}
+#wrap .baseLayer-block .baseLayer-block-container {
+  background: url("http://geoportal.prochar.ru/public/images/baseLayer-block-bg.png") repeat-x scroll left top transparent;
+  color: #487EAD;
+  float: left;
+  font-weight: bold;
+  height: 31px;
+  padding-left: 1px;
+  padding-right: 1px;
+  padding-top: 3px;
+  overflow: hidden;
+}
+#wrap .baseLayer-block .baseLayer-block-container .baselayers {
+  float: left;
+}
+#wrap .baseLayer-block .baseLayer-block-container .element {
+  float: left;
+}
+#wrap .baseLayer-block .baseLayer-block-container .line {
+  margin-top: 5px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .selector {
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 3px 4px;
+  cursor: pointer;
+}
+#wrap .baseLayer-block .baseLayer-block-container .selector:hover {
+  background: #dde7f0;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .arrow {
+  cursor: pointer;
+  margin-top: 5px;
+  padding: 4px 2px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .arrow:hover {
+  background: #dde7f0;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .current {
+  float: left;
+  color: #AAB3B3;
+  cursor: default;
+}
+#wrap .baseLayer-block .baseLayer-block-container .current:hover {
+  background: none;
+}
+#wrap .baseLayer-block .baseLayer-block-container .baselayer-select {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDE7F0;
+  border-radius: 0 0 4px 4px;
+  left: 3px;
+  padding: 8px 5px 10px 10px;
+  position: absolute;
+  top: 31px;
+  width: 222px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .baselayer-select div {
+  padding: 2px 4px;
+  cursor: pointer;
+}
+#wrap .baseLayer-block .baseLayer-block-container .baselayer-select div:hover {
+  background: #dde7f0;
+}
+#wrap .baseLayer-block .baseLayer-block-container .geosearch {
+  border: 1px solid #C4CCCC;
+  border-radius: 1px 1px 1px 1px;
+  float: right;
+  height: 15px;
+  margin-left: 6px;
+  margin-top: 2px;
+  padding: 1px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .geosearch input {
+  background: url("http://geoportal.prochar.ru/public/images/geosearch_input_bg.png") repeat-y scroll 0 0 transparent;
+  border: 0 none;
+  color: #487EAD;
+  float: left;
+  height: 15px;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 140px;
+}
+#wrap .baseLayer-block .baseLayer-block-container .geosearch img {
+  cursor: pointer;
+}
+#wrap .zoom-control {
+  z-index: 99;
+  position: absolute;
+  height: 250px;
+  width: 46px;
+  top: 48px;
+  left: 35px;
+}
+#wrap .zoom-control .hand-control {
+  background: url("http://geoportal.prochar.ru/public/images/controls/hand-control.png") no-repeat;
+  height: 52px;
+  margin-bottom: 5px;
+  /* .arrow-top:hover   {
+                background: url("@{path}/controls/nav-arrow-top-hover.png") no-repeat;
+                left: 12px;
+            }*/
+
+  /* .arrow-right:hover {
+                background: url("@{path}/controls/nav-arrow-right-hover.png") no-repeat;
+                left: 27px;
+                top: 12px;
+            }*/
+
+  /*.arrow-bottom:hover{
+                background: url("@{path}/controls/nav-arrow-bottom-hover.png") no-repeat;
+                left: 12px;
+                top: 27px;
+            } */
+
+  /*.arrow-left:hover  {
+                background: url("@{path}/controls/nav-arrow-left-hover.png") no-repeat;
+                left: -3px;
+                top: 12px;
+            }*/
+
+  /*  .arrow-top:active{
+                background: url("@{path}/controls/nav-arrow-top-active.png") no-repeat;
+                left: 10px;
+                top: -5px;
+            }
+            .arrow-right:active{
+                background: url("@{path}/controls/nav-arrow-right-active.png") no-repeat;
+                left: 25px;
+                top: 10px;
+            }
+            .arrow-bottom:active{
+                background: url("@{path}/controls/nav-arrow-bottom-active.png") no-repeat;
+                left: 10px;
+                top: 25px;
+            }
+            .arrow-left:active{
+                background: url("@{path}/controls/nav-arrow-left-active.png") no-repeat;
+                left: -5px;
+                top: 10px;
+            } */
+
+}
+#wrap .zoom-control .hand-control .arrow-top,
+#wrap .zoom-control .hand-control .arrow-right,
+#wrap .zoom-control .hand-control .arrow-bottom,
+#wrap .zoom-control .hand-control .arrow-left {
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+#wrap .zoom-control .hand-control .arrow-top {
+  left: 12px;
+  top: -3px;
+}
+#wrap .zoom-control .hand-control .arrow-top:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-top-hover.png") no-repeat;
+}
+#wrap .zoom-control .hand-control .arrow-top:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-top-active.png") no-repeat;
+  left: 10px;
+  top: -5px;
+}
+#wrap .zoom-control .hand-control .arrow-right {
+  left: 27px;
+  top: 12px;
+}
+#wrap .zoom-control .hand-control .arrow-right:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-right-hover.png") no-repeat;
+}
+#wrap .zoom-control .hand-control .arrow-right:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-right-active.png") no-repeat;
+  left: 25px;
+  top: 10px;
+}
+#wrap .zoom-control .hand-control .arrow-bottom {
+  left: 12px;
+  top: 27px;
+}
+#wrap .zoom-control .hand-control .arrow-bottom:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-bottom-hover.png") no-repeat;
+}
+#wrap .zoom-control .hand-control .arrow-bottom:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-bottom-active.png") no-repeat;
+  left: 10px;
+  top: 25px;
+}
+#wrap .zoom-control .hand-control .arrow-left {
+  left: -3px;
+  top: 12px;
+}
+#wrap .zoom-control .hand-control .arrow-left:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-left-hover.png") no-repeat;
+}
+#wrap .zoom-control .hand-control .arrow-left:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-arrow-left-active.png") no-repeat;
+  left: -5px;
+  top: 10px;
+}
+#wrap .zoom-control .hand-control .hand {
+  height: 26px;
+  left: 9px;
+  top: 9px;
+  width: 28px;
+  position: absolute;
+  cursor: pointer;
+}
+#wrap .zoom-control .hand-control .hand:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-hand-hover.png") no-repeat;
+}
+#wrap .zoom-control .hand-control .hand:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/nav-hand-active.png") no-repeat;
+}
+#wrap .zoom-control .hand-control .offset-control:active {
+  width: 26px;
+  height: 26px;
+}
+#wrap .zoom-control .zoom-in {
+  background: url("http://geoportal.prochar.ru/public/images/controls/zoom-in.png") no-repeat;
+  height: 28px;
+  margin: 0 0 10px 9px;
+  cursor: pointer;
+}
+#wrap .zoom-control .zoom-in:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/zoom-in-hover.png") no-repeat;
+}
+#wrap .zoom-control .zoom-in:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/zoom-in-active.png") no-repeat;
+}
+#wrap .zoom-control .slider {
+  height: 114px;
+  margin-left: 18px;
+  width: 7px;
+}
+#wrap .zoom-control .zoom-out {
+  background: url("http://geoportal.prochar.ru/public/images/controls/zoom-out.png") no-repeat;
+  height: 28px;
+  margin: 10px 0 0 9px;
+  cursor: pointer;
+}
+#wrap .zoom-control .zoom-out:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/zoom-out-hover.png") no-repeat;
+}
+#wrap .zoom-control .zoom-out:active {
+  background: url("http://geoportal.prochar.ru/public/images/controls/zoom-out-active.png") no-repeat;
+}
+#wrap .zoom-control .ui-slider {
+  background: url("http://geoportal.prochar.ru/public/images/controls/separator-hor.png") repeat-y;
+}
+#wrap .zoom-control .ui-slider-handle {
+  height: 7px;
+  cursor: pointer;
+  margin-bottom: -4px;
+  left: -6px;
+}
+#wrap .zoom-control .ui-state-default {
+  background: white  !important;
+  border: 1px solid #BDBDBD !important;
+  width: 17px;
+  height: 3px;
+  border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+}
+#wrap .zoom-control .ui-state-focus {
+  border: 1px solid #BDBDBD !important;
+  outline: none;
+}
+#wrap .zoom-control .ui-state-hover {
+  border: 1px solid #6D7E87 !important;
+}
+#wrap .zoom-control .ui-state-active {
+  border: 1px solid #6C9CBA !important;
+}
+#wrap .zoom-control .ui-widget-header {
+  background: none;
+}
+#wrap .right-panel {
+  background: none repeat scroll 0 0 #8396A2;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  box-shadow: 0 6px 10px 4px darkgray;
+  height: 500px;
+  margin-top: 10px;
+  padding: 6px 3px;
+  position: absolute;
+  right: 22px;
+  top: 0px;
+  width: 320px;
+  z-index: 99;
+}
+#wrap .right-panel #layers-tabs {
+  height: 480px;
+  overflow: hidden;
+}
+#wrap .right-panel #layers-tabs .pages {
+  margin-bottom: 9px;
+  margin-right: 2px;
+  overflow: hidden;
+}
+#wrap .right-panel #layers-tabs .pages ul {
+  float: right;
+  list-style: none outside none;
+  overflow: hidden;
+}
+#wrap .right-panel #layers-tabs .pages ul .page {
+  color: #696969;
+  float: left;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+#wrap .right-panel #layers-tabs .pages ul .here {
+  border-right: 1px solid #819aa6;
+  border-left: 1px solid #819aa6;
+  color: #1d1d1d;
+}
+#wrap .right-panel #layers-tabs .accordion {
+  border: 1px solid #93afc2;
+}
+#wrap .right-panel #layers-tabs .accordion h3 {
+  position: relative;
+  color: #1D1D1D;
+}
+#wrap .right-panel #layers-tabs .accordion h3 .checkbox-group {
+  left: 7px;
+  position: absolute;
+  top: 4px;
+  cursor: pointer;
+}
+#wrap .right-panel #layers-tabs .accordion .layer {
+  height: 20px;
+  padding-left: 7px;
+  padding-right: 5px;
+  padding-checkbox-grouptop: 2px;
+}
+#wrap .right-panel #layers-tabs .accordion .layer.colored {
+  background: #eeeeee;
+}
+#wrap .right-panel #layers-tabs .accordion .layer .title {
+  padding-left: 5px;
+}
+#wrap .right-panel #layers-tabs .accordion .layer .info {
+  cursor: pointer;
+  float: right;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+#wrap .right-panel #layers-tabs .accordion .layer .checkbox {
+  cursor: pointer;
+}
+#wrap .right-panel #layers-tabs .legends {
+  border: 1px solid #93afc2;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+#wrap .right-panel #layers-tabs .legends .block {
+  height: 100%;
+  overflow: auto;
+}
+#wrap .right-panel #layers-tabs .legends .block .item {
+  padding: 2px 5px 8px 7px;
+  overflow: hidden;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .title {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .title-float {
+  float: left;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .image {
+  margin-right: 4px;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .image-float {
+  float: left;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .image-block {
+  border: 1px solid #7D96A4;
+  height: 20px;
+  margin-right: 0;
+  overflow: hidden;
+  width: 260px;
+  padding-top: 2px;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .arrow {
+  background: url("http://geoportal.prochar.ru/public/images/icons/arrow.png") no-repeat scroll 0 0 transparent;
+  float: left;
+  height: 16px;
+  margin-right: 5px;
+  width: 16px;
+  cursor: pointer;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .arrow:active {
+  background: url("http://geoportal.prochar.ru/public/images/icons/arrow-active.png") no-repeat scroll 0 0 transparent;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .arrow-rotate {
+  background: url("http://geoportal.prochar.ru/public/images/icons/arrow-rotate.png") no-repeat scroll 0 0 transparent;
+  height: 15px;
+}
+#wrap .right-panel #layers-tabs .legends .block .item .arrow-rotate:active {
+  background: url("http://geoportal.prochar.ru/public/images/icons/arrow-rotate-active.png") no-repeat scroll 0 0 transparent;
+}
+#wrap .right-panel .right-panel-hider {
+  background: -moz-linear-gradient(center top, #b7babc, #606263) repeat scroll 0 0 transparent;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  height: 18px;
+  padding: 1px;
+  cursor: pointer;
+  margin-top: 1px;
+}
+#wrap .right-panel .right-panel-hider .right-panel-hider-button {
+  background: none repeat scroll 0 0 #8396A2;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  height: 11px;
+  padding-top: 7px;
+  text-align: center;
+}
+#wrap .right-panel .right-panel-hider .right-panel-hider-button:hover {
+  background: none repeat scroll 0 0 #92a5ae;
+}
+#wrap .right-panel .right-panel-hider .right-panel-hider-button .arrow {
+  background: url("http://geoportal.prochar.ru/public/images/icons/white-arrow.png") repeat scroll 0 0 transparent;
+  height: 4px;
+  margin-left: 150px;
+  width: 8px;
+}
+#wrap #authentication-div {
+  background: none repeat scroll 0 0 #819AA6;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  box-shadow: 0 6px 10px 4px darkgray;
+  height: 146px;
+  padding: 4px;
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  width: 294px;
+  z-index: 99;
+  font-size: 12px;
+}
+#wrap #authentication-div .header {
+  color: #FFFFFF;
+  font-weight: bold;
+  padding-bottom: 7px;
+  padding-left: 7px;
+  padding-top: 4px;
+}
+#wrap #authentication-div .container {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #6F726F;
+  padding: 7px;
+  color: #1b4049;
+}
+#wrap #authentication-div .container input {
+  border: 1px solid #4D5960;
+  height: 20px;
+  width: 154px;
+}
+#wrap #authentication-div .container input.checkbox {
+  float: left;
+  height: 15px;
+  width: 14px;
+}
+#wrap #authentication-div .container .row {
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+#wrap #authentication-div .container .row .cell {
+  float: left;
+}
+#wrap #authentication-div .container .row .title {
+  padding-right: 17px;
+  text-align: right;
+  width: 94px;
+  padding-top: 3px;
+}
+#wrap #authentication-div .container .row .remember-block {
+  margin-top: 6px;
+}
+#wrap #authentication-div .container .row .remember-block label {
+  margin-left: 5px;
+  cursor: pointer;
+}
+#wrap #authentication-div .container .buttons-block {
+  margin-top: 24px;
+}
+#wrap #authentication-div .container .buttons-block img {
+  margin-left: 6px;
+  cursor: pointer;
+}
+#wrap .logo-div {
+  bottom: 70px;
+  left: 14px;
+  position: absolute;
+  z-index: 99;
+  opacity: 0.8;
+}
+#wrap #features-div {
+  left: 0;
+  position: fixed;
+  top: 37px;
+  z-index: 100;
+  background: #fff;
+}
+#wrap #features-div #close-feature-button {
+  background: url("http://geoportal.prochar.ru/public/images/close-features-button.png") no-repeat scroll 0 0 transparent;
+  height: 29px;
+  left: 333px;
+  position: absolute;
+  top: 70px;
+  width: 22px;
+  z-index: 100;
+  cursor: pointer;
+}
+#wrap #features-div #features-container {
+  box-shadow: -24px 28px 4px 28px #808080;
+  height: 100%;
+  overflow-y: auto;
+  width: 333px;
+}
+#wrap #features-div #features-container .feature-group {
+  padding: 10px 1px 15px 0;
+}
+#wrap #features-div #features-container .feature-group .title {
+  background: url("http://geoportal.prochar.ru/public/images/blue-cube.png") no-repeat scroll left center transparent;
+  color: #6D7981;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding-left: 14px;
+  text-decoration: underline;
+}
+#wrap #features-div #features-container .feature-group .title:hover {
+  text-decoration: none;
+}
+#wrap #features-div #features-container .feature-group.colored {
+  background: #f7f7f7;
+}
+#wrap #features-div #features-container .feature-group h4 {
+  color: #4e5a61;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding-left: 14px;
+}
+#wrap #features-div #features-container .feature-group .feature-item {
+  padding-left: 14px;
+  padding-top: 3px;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-title {
+  background: url("http://geoportal.prochar.ru/public/images/blue-cube.png") no-repeat scroll left center transparent;
+  color: #6D7981;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding-left: 14px;
+  text-decoration: underline;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-title:hover {
+  text-decoration: none;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-content {
+  margin-top: 10px;
+  padding-left: 14px;
+  padding-right: 10px;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-content p {
+  padding-left: 0px;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-content .feature-eis-photos {
+  height: 100px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+  width: 1020px;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-content .feature-eis-photos img {
+  border: 2px solid #859DA9;
+  margin-right: 1px;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-content .feature-eis-files {
+  margin-top: 15px;
+}
+#wrap #features-div #features-container .feature-group .feature-item .feature-content .feature-eis-files .item {
+  background: url("http://geoportal.prochar.ru/public/images/clip.png") no-repeat scroll 0 0 transparent;
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+#wrap #features-div #features-container .feature-group .feature-item p {
+  color: #6D7981;
+  margin-bottom: 5px;
+  padding-left: 14px;
+  font-size: 12px;
+}
+#wrap #features-div #features-container .feature-group .features-shown {
+  border-left: 6px solid #859DA9;
+  margin-bottom: 5px;
+  overflow: hidden;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 2px;
+}
+#wrap #features-div #features-container .feature-group .geosearch-item {
+  margin-left: 14px;
+  background: url("http://geoportal.prochar.ru/public/images/blue-cube.png") no-repeat scroll left center transparent;
+  color: #6D7981;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding-left: 14px;
+  text-decoration: underline;
+}
+#wrap #features-div #features-container .feature-group .geosearch-item:hover {
+  text-decoration: none;
+}
+.mapsurfer-popup-content-wrapper {
+  background-color: #ffffff !important;
+}
+.mapsurfer-popup-content {
+  color: #222222;
+}
+.mapsurfer-popup-content p {
+  margin: 10px 0 !important;
+}
+.mapsurfer-popup-content p.firstImage {
+  text-align: center;
+}
+.mapsurfer-popup-content .showFeatures {
+  color: #487EAD;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.mapsurfer-popup-content .showFeatures:hover {
+  text-decoration: underline;
+}
+.printzone-overlays {
+  display: none;
+}
+.printzone-overlays div {
+  background-color: #324C55;
+  opacity: 0.6;
+  position: absolute;
+  z-index: 999;
+}
+.printzone-overlays .pz-over-w {
+  height: 100px;
+  width: 600px;
+}
+.printzone-overlays .pz-over-1 {
+  left: 0;
+  top: 37px;
+}
+.printzone-overlays .pz-over-h {
+  height: 300px;
+  width: 100px;
+}
+.printzone-overlays .pz-over-2 {
+  right: 0;
+  top: 37px;
+}
+.printzone-overlays .pz-over-w {
+  height: 100px;
+  width: 600px;
+}
+.printzone-overlays .pz-over-3 {
+  bottom: 0;
+  right: 0;
+}
+.printzone-overlays .pz-over-h {
+  height: 300px;
+  width: 100px;
+}
+.printzone-overlays .pz-over-4 {
+  bottom: 0;
+  left: 0;
+}

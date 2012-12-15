@@ -1,0 +1,45 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://rcku.gisogvrt.ru/styles/mapsurfer.css" />
+    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/mapsurfer/mapsurfer.js"></script>
+    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/jquery.js"></script>    
+    <style>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="map">
+
+        </div>
+        <script>            
+            var map;    
+
+            // Создаем базовый слой для карты
+            var baseLayer = new M.Rekod();
+            // создаем объект карты и привязываем его к элементу с id map
+            map = new M.Map('map', {
+                // устанвливаем центр карты
+                center: new M.LatLng(58.99531118795094,57.83203125),
+                // устанавливаем зум
+                zoom: 4,
+                // Добавляем базовый слой
+                layers: [baseLayer],
+                // Отключаем описание снизу карты
+                attributionControl: false
+            });  
+            // создаем слой
+            var wmsLayer = new M.TileLayer.WMS("http://cache1.mapkzn.ru/geoserver/wms", // url до сервера
+                                    {
+                                        layers: "admter:departments_incident_layer_archive", // названия слое можно через запятую
+                                        styles: "cku_departments_news_incident_style", // названия стилей можно через запятую
+                                        format: "image/png", // формат image/png,image/jpeg
+                                        transparent: true // прозрачность слоя
+                                    });
+            map.addLayer(wmsLayer); // добавляем слой
+        </script>        
+    </body>
+</html>

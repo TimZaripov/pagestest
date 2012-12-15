@@ -1,0 +1,9 @@
+#header {
+    visibility: hidden !important;
+}
+
+#map {
+    height: 91% !important;
+    width: 81% !important;
+    margin-top: 46px !important;
+}

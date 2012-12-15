@@ -1,0 +1,68 @@
+.dialogBox {
+  background: none repeat scroll 0 0 #819AA6;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 6px 10px 2px darkgray;
+  font-size: 12px;
+  left: 100px;
+  padding: 3px;
+  position: absolute;
+  top: 570px;
+  width: 557px;
+  z-index: 130;
+}
+.dialogBox .dialog-header {
+  cursor: move;
+  height: 20px;
+  padding-top: 3px;
+}
+.dialogBox .dialog-header h4 {
+  color: #FFFFFF;
+  font-weight: bold;
+  padding-left: 11px;
+}
+.dialogBox .dialog-header .close {
+  background: url("http://geoportal.prochar.ru/public/images/controls/close.png") no-repeat scroll left top transparent;
+  cursor: pointer;
+  height: 20px;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 19px;
+}
+.dialogBox .dialog-header .close:hover {
+  background: url("http://geoportal.prochar.ru/public/images/controls/close-hover.png") no-repeat scroll left top transparent;
+}
+.dialogBox .container {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #6F726F;
+  color: #1b4049;
+  padding: 15px;
+}
+#legendsBox .container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+#legendsBox .container p {
+  padding-bottom: 10px;
+}
+#legendsBox .container p img {
+  padding-right: 5px;
+  vertical-align: top;
+}
+.control-distance {
+  background-color: #CED9E1;
+  padding: 7px 5px;
+}
+.control-distance .control-distance-km {
+  background-color: white;
+  border-radius: 4px 4px 4px 4px;
+  color: #0B333C;
+  font-size: 12px;
+  height: 18px;
+  margin: 0 auto;
+  padding-top: 3px;
+  text-align: center;
+}
+#distanceBox .container {
+  padding: 0;
+}

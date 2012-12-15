@@ -1,0 +1,435 @@
+/* required styles */
+.mapsurfer-map-pane,
+.mapsurfer-tile,
+.mapsurfer-marker-icon,
+.mapsurfer-marker-shadow,
+.mapsurfer-tile-pane,
+.mapsurfer-overlay-pane,
+.mapsurfer-shadow-pane,
+.mapsurfer-marker-pane,
+.mapsurfer-popup-pane,
+.mapsurfer-overlay-pane svg,
+.mapsurfer-zoom-box,
+.mapsurfer-image-layer {
+  /* TODO optimize classes */
+
+  position: absolute;
+}
+.mapsurfer-container {
+  overflow: hidden;
+}
+.mapsurfer-tile-pane {
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.mapsurfer-tile,
+.mapsurfer-marker-icon,
+.mapsurfer-marker-shadow {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.mapsurfer-marker-icon,
+.mapsurfer-marker-shadow {
+  display: block;
+}
+.mapsurfer-clickable {
+  cursor: pointer;
+}
+.mapsurfer-container img {
+  max-width: none !important;
+}
+.mapsurfer-tile-pane {
+  z-index: 2;
+}
+.mapsurfer-overlay-pane {
+  z-index: 3;
+}
+.mapsurfer-shadow-pane {
+  z-index: 4;
+}
+.mapsurfer-marker-pane {
+  z-index: 5;
+}
+.mapsurfer-popup-pane {
+  z-index: 6;
+}
+.mapsurfer-zoom-box {
+  width: 0;
+  height: 0;
+}
+.mapsurfer-tile {
+  visibility: hidden;
+}
+.mapsurfer-tile-loaded {
+  visibility: inherit;
+}
+a.mapsurfer-active {
+  outline: 2px solid orange;
+}
+/* Mapsurfer controls */
+.mapsurfer-control {
+  position: relative;
+  z-index: 7;
+}
+.mapsurfer-top,
+.mapsurfer-bottom {
+  position: absolute;
+}
+.mapsurfer-top {
+  top: 0;
+}
+.mapsurfer-right {
+  right: 0;
+}
+.mapsurfer-bottom {
+  bottom: 0;
+}
+.mapsurfer-left {
+  left: 0;
+}
+.mapsurfer-control {
+  float: left;
+  clear: both;
+}
+.mapsurfer-right .mapsurfer-control {
+  float: right;
+}
+.mapsurfer-top .mapsurfer-control {
+  margin-top: 10px;
+}
+.mapsurfer-bottom .mapsurfer-control {
+  margin-bottom: 10px;
+}
+.mapsurfer-left .mapsurfer-control {
+  margin-left: 10px;
+}
+.mapsurfer-right .mapsurfer-control {
+  margin-right: 10px;
+}
+.mapsurfer-control-zoom,
+.mapsurfer-control-layers {
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+.mapsurfer-control-location {
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+.mapsurfer-control-location a {
+  background-color: rgba(190, 207, 227, 0.5);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 39px;
+  height: 39px;
+  display: block;
+}
+.mapsurfer-control-zoom {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.25);
+}
+.mapsurfer-control-zoom a {
+  background-color: rgba(190, 207, 227, 0.5);
+}
+.mapsurfer-control-zoom a,
+.mapsurfer-control-layers a {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 39px;
+  height: 39px;
+  display: block;
+}
+.mapsurfer-control-zoom a {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.mapsurfer-control-zoom a:hover {
+  background-color: #becfe3;
+}
+.mapsurfer-big-buttons .mapsurfer-control-zoom a {
+  width: 39px;
+  height: 39px;
+}
+.mapsurfer-control-location-button {
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/prizel_2.png");
+}
+.mapsurfer-control-location-button.enabled {
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/prizel.png") !important;
+}
+.mapsurfer-control-zoom-in {
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/zoom-in.png");
+  margin-bottom: 5px;
+}
+.mapsurfer-control-zoom-out {
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/zoom-out.png");
+}
+.mapsurfer-control-layers {
+  -moz-box-shadow: 0 0 7px #999;
+  -webkit-box-shadow: 0 0 7px #999;
+  box-shadow: 0 0 7px #999;
+  background: #f8f8f9;
+}
+.mapsurfer-control-layers a {
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/layers.png");
+  width: 36px;
+  height: 36px;
+}
+.mapsurfer-big-buttons .mapsurfer-control-layers a {
+  width: 44px;
+  height: 44px;
+}
+.mapsurfer-control-layers .mapsurfer-control-layers-list,
+.mapsurfer-control-layers-expanded .mapsurfer-control-layers-toggle {
+  display: none;
+}
+.mapsurfer-control-layers-expanded .mapsurfer-control-layers-list {
+  display: block;
+  position: relative;
+}
+.mapsurfer-control-layers-expanded {
+  padding: 6px 10px 6px 6px;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #333;
+  background: #fff;
+}
+.mapsurfer-control-layers input {
+  margin-top: 2px;
+  position: relative;
+  top: 1px;
+}
+.mapsurfer-control-layers label {
+  display: block;
+}
+.mapsurfer-control-layers-separator {
+  height: 0;
+  border-top: 1px solid #ddd;
+  margin: 5px -10px 5px -6px;
+}
+.mapsurfer-container .mapsurfer-control-attribution {
+  margin: 0;
+  padding: 0 5px;
+  font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.7);
+  -moz-box-shadow: 0 0 7px #ccc;
+  -webkit-box-shadow: 0 0 7px #ccc;
+  box-shadow: 0 0 7px #ccc;
+}
+.mapsurfer-control-attribution,
+.mapsurfer-control-scale-line {
+  padding: 0 5px;
+  color: #333;
+}
+.mapsurfer-container .mapsurfer-control-attribution,
+.mapsurfer-container .mapsurfer-control-scale {
+  font-size: 11px;
+}
+.mapsurfer-left .mapsurfer-control-scale {
+  margin-left: 5px;
+}
+.mapsurfer-bottom .mapsurfer-control-scale {
+  margin-bottom: 5px;
+}
+.mapsurfer-control-scale-line {
+  border: 2px solid #333;
+  border-top: none;
+  color: black;
+  line-height: 1;
+  font-size: 10px;
+  padding-bottom: 2px;
+  /*text-shadow: 1px 1px 1px #fff;*/
+
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.mapsurfer-control-scale-line:not(:first-child) {
+  border-top: 2px solid #333;
+  padding-top: 1px;
+  border-bottom: none;
+  margin-top: -2px;
+}
+.mapsurfer-control-scale-line:not(:first-child):not(:last-child) {
+  border-bottom: 2px solid #333;
+}
+/* Fade animations */
+.mapsurfer-fade-anim .mapsurfer-tile {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+.mapsurfer-fade-anim .mapsurfer-tile-loaded {
+  opacity: 1;
+}
+.mapsurfer-fade-anim .mapsurfer-popup {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  -moz-transition: opacity 0.2s linear;
+  -o-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+.mapsurfer-fade-anim .mapsurfer-map-pane .mapsurfer-popup {
+  opacity: 1;
+}
+.mapsurfer-zoom-anim .mapsurfer-tile {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+.mapsurfer-zoom-anim .mapsurfer-objects-pane {
+  visibility: hidden;
+}
+/* Popup layout */
+.mapsurfer-popup {
+  position: absolute;
+  text-align: center;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.mapsurfer-popup-content-wrapper {
+  padding: 1px;
+  text-align: left;
+}
+.mapsurfer-popup-content {
+  margin: 19px;
+}
+.mapsurfer-label-content-wrapper {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: none repeat scroll 0 0 white;
+  border: 1px solid black;
+}
+.mapsurfer-label-content {
+  margin: 4px;
+}
+.mapsurfer-popup-tip-container {
+  margin: 0 auto;
+  width: 40px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.mapsurfer-popup-tip {
+  width: 15px;
+  height: 15px;
+  padding: 1px;
+  margin: -8px auto 0;
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.mapsurfer-popup-close-button {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+.mapsurfer-popup-content p {
+  margin: 18px 0;
+}
+/* Visual appearance */
+.mapsurfer-container {
+  background: #ddd;
+}
+.mapsurfer-container a {
+  color: #0078A8;
+}
+.mapsurfer-zoom-box {
+  border: 2px dotted #05f;
+  background: white;
+  opacity: 0.5;
+}
+.mapsurfer-popup-content-wrapper,
+.mapsurfer-popup-tip {
+  background: white;
+  box-shadow: 0 1px 10px #888;
+  -moz-box-shadow: 0 1px 10px #888;
+  -webkit-box-shadow: 0 1px 14px #999;
+}
+.mapsurfer-popup-content-wrapper {
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+.mapsurfer-popup-content {
+  font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+.mapsurfer-popup-close-button {
+  background: #ffffff url("http://geoportal.prochar.ru/public/images/mapsurfer/popup-close.png");
+}
+.mapsurfer-marker-icon-wrapper {
+  position: absolute;
+}
+.mapsurfer-marker-iconlabel {
+  background: #fff;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  -moz-box-shadow: 0 3px 10px #888;
+  -webkit-box-shadow: 0 3px 14px #999;
+  box-shadow: 0 3px 10px #888;
+  display: block;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  padding: 4px 6px;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.mapsurfer-control-distance {
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.mapsurfer-control-distance a,
+.mapsurfer-control-distance div {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  padding: 2px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+.mapsurfer-control-distance a {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+.mapsurfer-control-distance div {
+  font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #333;
+  height: 16px;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+.mapsurfer-control-distance-edit {
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/measure.png");
+}
+.mapsurfer-control-distance-delete {
+  margin-left: 5px;
+  background-image: url("http://geoportal.prochar.ru/public/images/mapsurfer/cross.png");
+}
+a.mapsurfer-control-distance-active {
+  background-color: yellow;
+}
+.mapsurfer-div-icon {
+  background: #fff;
+  border: 1px solid #666;
+  position: absolute;
+}
+.mapsurfer-editing-icon {
+  border-radius: 2px;
+}

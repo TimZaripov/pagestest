@@ -1,0 +1,1 @@
+(function(){dust.register("templates/dialogBox.tl",body_0);function body_0(chk,ctx){return chk.write("<div class=\"dialogBox\" id=\"").reference(ctx.get("dialogBoxId"),ctx,"h").write("\"><div class=\"dialog-header\"><h4></h4><div class=\"close\"></div></div><div class=\"container\"></div></div>");}return body_0;})();

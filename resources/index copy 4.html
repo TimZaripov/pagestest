@@ -1,0 +1,128 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://rcku.gisogvrt.ru/scripts/mapsurfer/testing/mapsurfer.css" />
+    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/mapsurfer/testing/mapsurfer.js"></script>
+    <script type="text/javascript" src="http://rcku.gisogvrt.ru/scripts/jquery.js"></script>    
+    <style>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    </head>
+    <body>
+        <div id="map">
+
+        </div>
+        <script>            
+            var map,
+                sscPath="http://rcku.gisogvrt.ru";;    
+
+            // Создаем базовый слой для карты
+            var baseLayer = new M.Rekod();
+            // создаем объект карты и привязываем его к элементу с id map
+            map = new M.Map('map', {
+                // устанвливаем центр карты
+                center: new M.LatLng(58.99531118795094,57.83203125),
+                // устанавливаем зум
+                zoom: 4,
+                // Добавляем базовый слой
+                layers: [baseLayer],
+                // Отключаем описание снизу карты
+                attributionControl: false
+            });
+
+            function showNewsData(marker){
+                var content = '';
+                var newsId = marker.feature.id;
+                // Если попап не создан для события то...
+                if (marker._popup == undefined  || !marker._popup )  {
+                    // Подгружаем дополнительные данные по событию
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        url: sscPath+'/departmentnews/getNewsInfo/'+newsId,
+                        success: function(data) {
+                            // если удачно то...
+                            if (data.status == 'ok'){
+                                // Создаем содержание маркера HTML
+                                content = "<a href=\""+sscPath+"/departmentnews/knews/show/"+newsId+"\">"+data.info.news_date+"&nbsp;" + data.info.title+ "</a><br />"+ data.info.department_name;
+                                // Создаем popup передаем контент и открываем его
+                                marker.bindPopup(content).openPopup();
+                            }
+                            else
+                                alert(data.message);
+                        },
+                        error:function(data){
+                            alert('Произошла ошибка при выполнении операции!');
+                        }
+                    });
+                } else // или просто открываем его
+                    marker.openPopup();
+            }    
+
+            M.CircleRed = M.Cluster.Icon.extend({ // создаем иконку для кластеров
+                options: {
+                    image: sscPath+"/scripts/mapsurfer/testing/images/cluster/circle_red.png", // ссылка на изображение
+                    iconSize: new M.Point(73, 72), // размер изображения
+                    iconAnchor: new M.Point(36, 36), // смещение для отображения
+                    popupAnchor: new M.Point(0, -8) // смещение для popup
+                }
+            });    
+
+            M.DynamicIcon = M.Icon.extend({
+                iconSize: new M.Point(28,35),
+                iconAnchor: new M.Point(14,35),
+
+                createIcon: function(marker) {
+                    return this._createIcon('icon',marker);
+                },
+
+                createShadow: function() {
+                    return null;
+                },
+
+                _createIcon: function(name,marker) {
+                    var size = this[name + 'Size'],
+                        src = "http://"+marker.feature.map_icon,
+                        img = this._createImg(src);
+
+                    if (!src) { return null; }
+
+                    img.className = 'mapsurfer-marker-' + name;
+
+                    img.style.marginLeft = (-this.iconAnchor.x) + 'px';
+                    img.style.marginTop = (-this.iconAnchor.y) + 'px';
+
+                    if (size) {
+                        img.style.width = size.x + 'px';
+                        img.style.height = size.y + 'px';
+                    }
+
+                    return img;
+                },                
+            });
+
+            // Создаем слой            
+            var jsonlayer = new M.JsonLatLng(sscPath+'/departmentnews/getMarkerInfo/0', // источник получения данных
+                                     { // дополнительные свойства
+                                        icon: new M.DynamicIcon(),
+                                        fieldLat: "lat", // название поля содержащего Latitude
+                                        fieldLng: "lon", // название поля содержащего Longtitude
+                                        cluster: true, // разрешаем кластиризацию объектов
+                                        clusterIconClass: M.CircleRed, // Устанавливаем иконку для кластеризации
+                                        radius:        100, // максимальный радиус для кластиризации в пикселях
+                                        maxZoomChange: 2, // максимально на какое количество зумов приблизиться при клике по кластеру
+                                        maxZoomLevel:  14, // зум после которого отключить кластеризацию
+                                        singleClusters:   false, // запретить одиночные кластеры
+                                        object: "info" // название объекта внутри json в котором храниться массив точек если undefined значит в корне                                        
+                                     });
+            jsonlayer.on("click", function(e) {
+                var marker = e.marker;
+                showNewsData(marker);
+            });
+            map.addLayer(jsonlayer); // добавляем слой
+        </script>        
+    </body>
+</html>
